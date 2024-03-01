@@ -31,15 +31,15 @@ export const Navbar = () => {
         navigate("/login")
     }
 
-    const handleToggleStyle = () => {
-        actions.toggleGlobalStyle('claro', '.e-claro');
-    };
-    const handleToggleStyle1 = () => {
-        actions.toggleGlobalStyle('claro1', '.e-claro');
-    };
-    const handleToggleStyle2 = () => {
-        actions.toggleGlobalStyle('claro2', '.e-claro');
-    };
+    // const handleToggleStyle = () => {
+    //     actions.toggleGlobalStyle('claro', '.e-claro');
+    // };
+    // const handleToggleStyle1 = () => {
+    //     actions.toggleGlobalStyle('claro1', '.e-claro');
+    // };
+    // const handleToggleStyle2 = () => {
+    //     actions.toggleGlobalStyle('claro2', '.e-claro');
+    // };
 
     return (
         <nav className="navbar color-back color-text px-5">
@@ -56,11 +56,6 @@ export const Navbar = () => {
                     </h4>
                 </div>
                 {/* Resto del contenido del Layout */}
-                <div className="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="button" className="btn btn-outline-dark" onClick={handleToggleStyle}>Claro</button>
-                    <button type="button" className="btn btn-outline-dark" onClick={handleToggleStyle1}>Daltónico</button>
-                    <button type="button" className="btn btn-outline-dark" onClick={handleToggleStyle2}>Flash</button>
-                </div>
                 <ul className="nav justify-content-center">
                     <li className="nav-item">
                         <Link to="/galeria" className="nav-link active color-text-nav">
