@@ -12,8 +12,8 @@ from flask_swagger import swagger
 from api.utils import APIException, generate_sitemap
 from api.models import *
 from api.routes import api
-from api.admin import setup_admin
-from api.commands import setup_commands
+# from api.admin import setup_admin
+# from api.commands import setup_commands
 
 from flask_cors import CORS
 
@@ -60,10 +60,10 @@ MIGRATE = Migrate(app, db, compare_type=True)
 db.init_app(app)
 
 # Add the admin
-setup_admin(app)
+# setup_admin(app)
 
 # Add the admin
-setup_commands(app)
+# setup_commands(app)
 
 # Add all endpoints from the API with a "api" prefix
 app.register_blueprint(api, url_prefix='/api')
@@ -75,6 +75,7 @@ def handle_invalid_usage(error):
 
 # Generate sitemap with all your endpoints
 @app.route('/')
+
 def sitemap():
     if ENV == "development":
         return generate_sitemap(app)
@@ -120,40 +121,6 @@ def login():
     access_token = create_access_token(identity=user.id, additional_claims={'role': user.role}, expires_delta=ACCESS_TOKEN_EXPIRATION)
     
     return jsonify({'msg': 'Login successful!', 'token': access_token}), 200
-
-
-# @app.route('/events', methods=['GET'])
-# def get_all_events():
-#     try:
-#         events = Events.query.all()
-#         if not events: 
-#             return jsonify({'msg': 'No hay eventos disponibles'})
-        
-#         serialized_events = [event.serialize() for event in events]
-#         response = jsonify(serialized_events)
-#         response.headers['Content-Type'] = 'application/json'
-
-#         return response, 200
-#     except Exception as e:
-#         return jsonify({'error': str(e)}), 500
-
-
-
-# @app.route('/events/<int:event_id>', methods=['GET'])
-# def get_event(event_id):
-#     try:
-#         event = Events.query.get(event_id)
-#         if not event:
-#             return jsonify({'msg': 'Evento no encontrado'}), 404
-
-#         serialized_event = event.serialize()
-
-#         response = make_response(jsonify(serialized_event))
-#         response.headers['Content-Type'] = 'application/json'
-
-#         return response, 200
-#     except Exception as e:
-#         return jsonify({'error': str(e)}), 500
 
 
 if __name__ == '__main__':
